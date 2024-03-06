@@ -3,6 +3,7 @@ package com.example.board;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
@@ -13,4 +14,8 @@ class BoardApplicationTests {
         assertTrue(false);
     }
 
+    @Test
+    void failureTest() {
+        assertFalse(true);
+    }
 }
