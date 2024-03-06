@@ -12,3 +12,5 @@
 - 등등등..
 
 # [요구사항](documents/requirements/RequirementsSpecification.md)
+
+# [CI/CD 환경 구축](documents/cicd/CICD.md)
