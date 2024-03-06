@@ -2,7 +2,7 @@ name: PR_Action
 on: [ pull_request ]
 
 jobs:
-  tests:
+  gradle-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
