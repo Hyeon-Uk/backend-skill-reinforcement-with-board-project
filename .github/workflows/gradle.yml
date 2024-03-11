@@ -6,7 +6,6 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
 name: Java CI/CD with Gradle
-
 on:
   push:
     branches: [ "master" ]
@@ -28,6 +27,12 @@ jobs:
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+
+      # db.properties 생성
+    - name: Create application-db.properties
+      run: |
+        touch ./src/main/resources/application-db.properties
+        echo "${{secrets.DB_PROPERTIES}}" > ./src/main/resources/application-db.properties
 
     # Gradle 캐싱
     - name: Gradle Caching
