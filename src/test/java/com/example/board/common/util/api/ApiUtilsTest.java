@@ -42,7 +42,7 @@ class ApiUtilsTest {
 
     @Test
     void error_객체_생성_성공() {
-        ResponseEntity<ApiUtils.ApiResult<?>> error = ApiUtils.error(new RuntimeException("테스트용 RuntimeException"), HttpStatus.BAD_REQUEST);
+        ResponseEntity<ApiUtils.ApiResult<Void>> error = ApiUtils.error(new RuntimeException("테스트용 RuntimeException"), HttpStatus.BAD_REQUEST);
 
         assertAll("testObject verification",
                 () -> assertEquals(HttpStatus.BAD_REQUEST, error.getStatusCode()),
