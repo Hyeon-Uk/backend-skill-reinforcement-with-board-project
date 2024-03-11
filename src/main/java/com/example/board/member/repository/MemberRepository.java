@@ -14,4 +14,6 @@ public interface MemberRepository {
     Optional<Member> findByEmailAndDeletedAtIsNull(String email);
 
     Optional<Member> findByUserIdAndDeletedAtIsNull(String id);
+
+    Optional<Member> findByNicknameAndDeletedAtIsNull(String nickname);
 }

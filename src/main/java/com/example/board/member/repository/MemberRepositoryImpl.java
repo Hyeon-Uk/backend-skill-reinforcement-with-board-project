@@ -2,7 +2,7 @@ package com.example.board.member.repository;
 
 import com.example.board.member.domain.Member;
 import com.example.board.member.domain.exception.DuplicateException;
-import com.example.board.member.repository.entity.MemberEntity;
+import com.example.board.member.repository.infrastructure.entity.MemberEntity;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -32,6 +32,8 @@ public class MemberRepositoryImpl implements MemberRepository {
                     throw new DuplicateException("존재하는 아이디입니다.");
                 } else if (message.contains("member_email")) {
                     throw new DuplicateException("존재하는 이메일입니다.");
+                } else if (message.contains("member_nickname")) {
+                    throw new DuplicateException("존재하는 닉네임입니다.");
                 } else {
                     throw e;
                 }
@@ -67,6 +69,13 @@ public class MemberRepositoryImpl implements MemberRepository {
     public Optional<Member> findByUserIdAndDeletedAtIsNull(String id) {
         return memberJpaRepository
                 .findByUserIdAndDeletedAtIsNull(id)
+                .map(MemberEntity::toDomain);
+    }
+
+    @Override
+    public Optional<Member> findByNicknameAndDeletedAtIsNull(String nickname) {
+        return memberJpaRepository
+                .findByNicknameAndDeletedAtIsNull(nickname)
                 .map(MemberEntity::toDomain);
     }
 }

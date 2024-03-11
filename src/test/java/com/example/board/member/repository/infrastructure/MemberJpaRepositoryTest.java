@@ -1,6 +1,7 @@
-package com.example.board.member.repository;
+package com.example.board.member.repository.infrastructure;
 
-import com.example.board.member.repository.entity.MemberEntity;
+import com.example.board.member.repository.MemberJpaRepository;
+import com.example.board.member.repository.infrastructure.entity.MemberEntity;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @Transactional
-class MemberRepositoryTest {
+class MemberJpaRepositoryTest {
     @Autowired
     private MemberJpaRepository memberRepository;
 

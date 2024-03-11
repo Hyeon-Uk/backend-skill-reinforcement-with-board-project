@@ -55,4 +55,11 @@ public class FakeMemberRepository implements MemberRepository {
                 .filter(item -> Objects.equals(item.getId(), id) && item.getDeletedAt() == null)
                 .findFirst();
     }
+
+    @Override
+    public Optional<Member> findByNicknameAndDeletedAtIsNull(String nickname) {
+        return store.stream()
+                .filter(item -> Objects.equals(item.getNickname(), nickname) && item.getDeletedAt() == null)
+                .findFirst();
+    }
 }

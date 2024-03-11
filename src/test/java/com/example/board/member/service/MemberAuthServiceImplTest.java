@@ -120,5 +120,32 @@ class MemberAuthServiceImplTest {
             }).getMessage();
             assertEquals("존재하는 아이디입니다.", message);
         }
+
+        @Test
+        void 닉네임_중복_테스트() {
+            //given
+            memberRepository.save(Member.builder()
+                    .id("rlagusdnr1")
+                    .name("Hyeon")
+                    .nickname("khu147")
+                    .email("rlagusdnr1@gmail.com")
+                    .password("Abcdefg123!")
+                    .build());
+
+            MemberSignIn signIn = MemberSignIn.builder()
+                    .id("rlagusdnr120")
+                    .name("Hyeonuk")
+                    .nickname("khu147")
+                    .email("rlagusdnr120@gmail.com")
+                    .password("Abcdefg123!")
+                    .passwordCheck("Abcdefg123!")
+                    .build();
+
+            //when & then
+            String message = assertThrows(DuplicateException.class, () -> {
+                authService.signIn(signIn);
+            }).getMessage();
+            assertEquals("존재하는 닉네임입니다.", message);
+        }
     }
 }

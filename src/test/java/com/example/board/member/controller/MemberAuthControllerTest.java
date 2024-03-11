@@ -130,5 +130,34 @@ class MemberAuthControllerTest {
             }).getMessage();
             assertEquals("존재하는 아이디입니다.", message);
         }
+
+        @Test
+        void 닉네임_중복_테스트() {
+            //given
+            SignIn.Request signIn = SignIn.Request.builder()
+                    .id("rlagusdnr1")
+                    .name("Hyeonuk")
+                    .nickname("khu147")
+                    .email("rlagusdnr1@gmail.com")
+                    .password("Abcdefg123!")
+                    .passwordCheck("Abcdefg123!")
+                    .build();
+            authController.memberSignIn(signIn);
+            SignIn.Request duplicateId = SignIn.Request.builder()
+                    .id("rlagusdnr120")
+                    .name("Hyeonuk")
+                    .nickname("khu147")
+                    .email("rlagusdnr120@gmail.com")
+                    .password("Abcdefg123!")
+                    .passwordCheck("Abcdefg123!")
+                    .build();
+
+
+            //when & then
+            String message = assertThrows(DuplicateException.class, () -> {
+                authController.memberSignIn(duplicateId);
+            }).getMessage();
+            assertEquals("존재하는 닉네임입니다.", message);
+        }
     }
 }

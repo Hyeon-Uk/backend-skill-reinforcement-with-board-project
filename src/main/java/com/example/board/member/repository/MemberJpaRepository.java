@@ -1,9 +1,7 @@
 package com.example.board.member.repository;
 
-import com.example.board.member.repository.entity.MemberEntity;
-import jakarta.persistence.LockModeType;
+import com.example.board.member.repository.infrastructure.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Lock;
 
 import java.util.Optional;
 
@@ -14,6 +12,7 @@ public interface MemberJpaRepository extends JpaRepository<MemberEntity, Long> {
 
     Optional<MemberEntity> findByEmailAndDeletedAtIsNull(String email);
 
-    @Lock(value = LockModeType.PESSIMISTIC_READ)
     Optional<MemberEntity> findByUserIdAndDeletedAtIsNull(String id);
+
+    Optional<MemberEntity> findByNicknameAndDeletedAtIsNull(String nickname);
 }

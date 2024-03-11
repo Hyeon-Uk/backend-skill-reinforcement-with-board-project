@@ -1,4 +1,4 @@
-package com.example.board.member.repository.entity;
+package com.example.board.member.repository.infrastructure.entity;
 
 import com.example.board.common.entity.BaseEntity;
 import com.example.board.member.domain.Member;

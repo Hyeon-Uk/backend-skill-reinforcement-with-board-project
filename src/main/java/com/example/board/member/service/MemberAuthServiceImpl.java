@@ -35,6 +35,11 @@ public class MemberAuthServiceImpl implements MemberAuthService {
             throw new DuplicateException("존재하는 아이디입니다.");
         }
 
+        Optional<Member> nicknameDuplicateResult = memberRepository.findByNicknameAndDeletedAtIsNull(signIn.getNickname());
+        if (nicknameDuplicateResult.isPresent()) {
+            throw new DuplicateException("존재하는 닉네임입니다.");
+        }
+
         //비밀번호 암호화하여 저장
         Member member = signIn.toDomainWithEncryptPassword(memberPasswordEncrypt);
 
